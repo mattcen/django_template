@@ -12,6 +12,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+    TIME_ZONE=(str, 'UTC')
+)
+# reading .env file
+# environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^yp)mlub!3rlyef#jb8s0rv62xsmg4=6n#%51s9e-ri0_hya68'
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in
+# os.environ
+SECRET_KEY = env('SECRET_KEY')
 
+# False if not in os.environ
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -37,6 +49,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Add gis module for geospatial projects
+    #'django.contrib.gis',
+    # Include this to build REST APIs
+    'rest_framework',
+    # Include this to build on top of Boostrap 4
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +93,15 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # Use regular postgres by default
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # Use postgis for spatial projects
+        #'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': env("POSTGRES_DB"),
+        'USER': env("POSTGRES_USER"),
+        'PASSWORD': env("POSTGRES_PASSWORD"),
+        'HOST': env("POSTGRES_HOST", default="localhost"),
+        'PORT': env("POSTGRES_PORT", default="5432"),
     }
 }
 
@@ -105,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = env("TIME_ZONE")
 
 USE_I18N = True
 
@@ -123,3 +148,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+BOOTSTRAP4 = {
+    'include_jquery': True
+}

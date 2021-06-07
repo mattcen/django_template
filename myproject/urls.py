@@ -13,9 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# Use this for regular Django projects
 from django.contrib import admin
-from django.urls import path
+# Use this for geospatial projects
+#from django.contrib.gis import admin
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Add this to set up authentication for REST framework
+    #path('api-auth/', include('rest_framework.urls')),
 ]
