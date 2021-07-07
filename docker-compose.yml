@@ -15,16 +15,24 @@ services:
       timeout: 5s
       retries: 5
   app:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    build: ./django
+    command: gunicorn myproject.wsgi -b 0.0.0.0:8000
     env_file: .env
     volumes:
-      - .:/code
-    ports:
-      - "$APP_PORT:8000"
+      - static_files:/static
     depends_on:
       db:
         condition: service_healthy
 
+  web:
+    build: ./nginx
+    ports:
+      - "$APP_PORT:80"
+    depends_on:
+      - app
+    volumes:
+      - static_files:/static
+
 volumes:
-  db_data: {}
+  db_data:
+  static_files:
