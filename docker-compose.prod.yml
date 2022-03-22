@@ -2,10 +2,7 @@ version: "3.8"
 
 services:
   db:
-    # Use regular postgres by default
-    image: postgres
-    # Use postgis for spatial apps
-    #image: postgis/postgis
+    image: postgis/postgis
     env_file: .env
     volumes:
       - db_data:/var/lib/postgresql/data
@@ -14,25 +11,28 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  app:
+  umap_app:
     build: ./django
-    command: gunicorn myproject.wsgi -b 0.0.0.0:8000
+    command: gunicorn wsgi -b 0.0.0.0:8019
     env_file: .env
     volumes:
       - static_files:/static
+      - media_files:/media
     depends_on:
       db:
         condition: service_healthy
 
-  web:
+  umap_web:
     build: ./nginx
     ports:
       - "$APP_PORT:80"
     depends_on:
-      - app
+      - umap_app
     volumes:
       - static_files:/static
+      - media_files:/media
 
 volumes:
   db_data:
   static_files:
+  media_files:

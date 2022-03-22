@@ -2,10 +2,7 @@ version: "3.8"
 
 services:
   db:
-    # Use regular postgres by default
-    image: postgres
-    # Use postgis for spatial apps
-    #image: postgis/postgis
+    image: postgis/postgis
     env_file: .env
     volumes:
       - db_data:/var/lib/postgresql/data
@@ -14,14 +11,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  app:
+  umap_app:
     build: ./django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: umap runserver 0.0.0.0:8019
     env_file: .env
     volumes:
       - ./django:/code
     ports:
-      - "$APP_PORT:8000"
+      - "$APP_PORT:8019"
     depends_on:
       db:
         condition: service_healthy
