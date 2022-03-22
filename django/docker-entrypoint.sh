@@ -9,6 +9,7 @@ umap compress
 
 # Creat a super user
 umap shell --pythonpath . -c 'from scripts import createsuperuser; createsuperuser.run()'
+umap shell --pythonpath . -c 'from scripts import create_indexes'
 
 # Execute the CMD from the Dockerfile:
 exec "$@"
