@@ -20,6 +20,8 @@ services:
     env_file: .env
     volumes:
       - ./django:/code
+      - static_files:/static
+      - media_files:/media
     ports:
       - "$APP_PORT:8000"
     depends_on:
@@ -28,3 +30,5 @@ services:
 
 volumes:
   db_data:
+  static_files:
+  media_files:
