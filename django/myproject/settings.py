@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     #'django.contrib.gis',
     # Include this to build REST APIs
     'rest_framework',
-    # Include this to build on top of Boostrap 4
-    'bootstrap4',
+    # Include this to build on top of Boostrap 5
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -149,8 +149,3 @@ STATIC_ROOT = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-BOOTSTRAP4 = {
-    'include_jquery': True
-}

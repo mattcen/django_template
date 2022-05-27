@@ -2,5 +2,5 @@ Django
 django-environ
 djangorestframework
 psycopg2-binary
-django-bootstrap4
+django-bootstrap5
 gunicorn
