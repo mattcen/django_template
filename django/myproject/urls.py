@@ -19,6 +19,8 @@ from django.contrib.auth import views as auth_views
 # Use this for geospatial projects
 #from django.contrib.gis import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path(
@@ -45,3 +47,5 @@ urlpatterns = [
     # Add this to set up authentication for REST framework
     #path('api-auth/', include('rest_framework.urls')),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
