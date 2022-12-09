@@ -8,6 +8,7 @@ RUN apt-get update && \
       binutils \
       libproj-dev \
       gdal-bin \
+      libsqlite3-mod-spatialite \
       # Database client for using './manage.py dbshell' etc
       #sqlite3 \
       #spatialite-bin \

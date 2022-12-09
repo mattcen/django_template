@@ -18,12 +18,12 @@ env = environ.Env(
     DEBUG=(bool, False),
     TIME_ZONE=(str, 'UTC')
 )
-# reading .env file
-# environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# reading .env file
+environ.Env.read_env(BASE_DIR.parent / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -94,13 +94,17 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        # Use regular postgres by default
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # Use postgis for spatial projects
-        #'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': env("POSTGRES_DB"),
-        'USER': env("POSTGRES_USER"),
-        'PASSWORD': env("POSTGRES_PASSWORD"),
+        # Use sqlite by default
+        'ENGINE': env("DB_ENGINE", default='django.db.backends.sqlite3'),
+        # Use spatialite for spatial projects
+        #'ENGINE': env("DB_ENGINE", default='django.contrib.gis.db.backends.spatialite'),
+        # Use regular Postgres in production
+        #'ENGINE': env("DB_ENGINE", default='django.db.backends.postgresql_psycopg2'),
+        # Use PostGIS in production for spatial projects
+        #'ENGINE': env("DB_ENGINE", default='django.contrib.gis.db.backends.postgis'),
+        'NAME': env("POSTGRES_DB", default=env("DB_NAME", default=BASE_DIR.parent / 'db/db.sqlite3')),
+        'USER': env("POSTGRES_USER", default="nobody"),
+        'PASSWORD': env("POSTGRES_PASSWORD", default="insecure"),
         'HOST': env("POSTGRES_HOST", default="localhost"),
         'PORT': env("POSTGRES_PORT", default="5432"),
     }
@@ -144,9 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
+STATIC_ROOT = BASE_DIR.parent / 'static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = BASE_DIR.parent / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-auto-field

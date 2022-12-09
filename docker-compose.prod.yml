@@ -28,6 +28,8 @@ services:
     volumes:
       - static_files:/static
       - media_files:/media
+      # Uncomment this to use SQLite
+      #- db_data:/db
     restart: "unless-stopped"
     # To use an external database server, comment out this dependency
     depends_on:
