@@ -9,9 +9,9 @@ RUN apt-get update && \
       libproj-dev \
       gdal-bin \
       # Database client for using './manage.py dbshell' etc
-      #sqlite3 \
-      #spatialite-bin \
-      #postgresql-client \
+      sqlite3 \
+      spatialite-bin \
+      postgresql-client \
     && \
     apt-get -y autoremove && \
     apt-get -y clean && \

@@ -1,10 +1,11 @@
 version: "3.8"
 
 services:
+  # To use an external database server, comment out this service
   db:
-    # Use regular postgres by default
+    # Use regular Postgres by default
     image: postgres
-    # Use postgis for spatial apps
+    # Use PostGIS for spatial apps
     #image: postgis/postgis
     env_file: .env
     volumes:
@@ -14,19 +15,27 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: "unless-stopped"
+
   app:
-    build: ./django
+    image: localhost/your_app_image_here
+    build:
+      context: ./django
+      # To build image with extra dev tools
+      #dockerfile: Dockerfile.dev
     command: python manage.py runserver 0.0.0.0:8000
     env_file: .env
     volumes:
       - ./django:/code
       - static_files:/static
       - media_files:/media
-    ports:
-      - "$APP_PORT:8000"
+    restart: "unless-stopped"
+    # To use an external database server, comment out this dependency
     depends_on:
       db:
         condition: service_healthy
+    ports:
+      - "$APP_PORT:8000"
 
 volumes:
   db_data:
