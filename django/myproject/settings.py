@@ -102,7 +102,7 @@ DATABASES = {
         #'ENGINE': env("DB_ENGINE", default='django.db.backends.postgresql_psycopg2'),
         # Use PostGIS in production for spatial projects
         #'ENGINE': env("DB_ENGINE", default='django.contrib.gis.db.backends.postgis'),
-        'NAME': env("POSTGRES_DB", default=env("DB_NAME", default=BASE_DIR.parent / 'db/db.sqlite3')),
+        'NAME': env("POSTGRES_DB", default=env("DB_NAME", default=str(BASE_DIR.parent / 'db/db.sqlite3'))),
         'USER': env("POSTGRES_USER", default="nobody"),
         'PASSWORD': env("POSTGRES_PASSWORD", default="insecure"),
         'HOST': env("POSTGRES_HOST", default="localhost"),
