@@ -16,6 +16,8 @@ services:
       timeout: 5s
       retries: 5
     restart: "unless-stopped"
+    networks:
+      - backend
 
   app:
     image: localhost/your_app_image_here
