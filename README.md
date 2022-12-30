@@ -12,9 +12,9 @@ cd repo
 cp .env.example .env
 ```
 
-2. Edit the `.env` file and review its settings. At a minimum, you'll probably want to uncomment `DEBUG=true` for testing.
+2. Edit the `.env` file and review its settings. At a minimum, you'll probably want to uncomment `DEBUG=true` for testing
 
-3. Start up Django
+3. Start Django
 
   * To do so using Docker:
 
@@ -54,7 +54,7 @@ cp .env.example .env
     ./manage.py runserver
     ```
 
-4. Log into admin console at http://localhost:8000/admin as `root`/`root`.
+4. Log into admin console at http://localhost:8000/admin as `root`/`root`
 
 ## Notes
 
