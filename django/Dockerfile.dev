@@ -23,4 +23,6 @@ RUN pip install -r requirements.txt
 COPY . .
 EXPOSE 8000
 
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 CMD bash -c '[[ "$(curl -L -o /dev/null -s -w "%{http_code}\n" http://localhost:8000/)" == "200" ]]'
+
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
