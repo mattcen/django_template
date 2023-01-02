@@ -37,8 +37,11 @@ services:
         condition: service_healthy
 
   web:
+    image: mattcen/nginx_django
     build: ./nginx
-    #image: localhost/your_nginx_image_here
+    environment:
+      # Replace 'app' below with the name of the django service above
+      WEB_APP_HOST: app:8000
     ports:
       - "$APP_PORT:80"
     depends_on:
