@@ -29,6 +29,7 @@ services:
       - ./django:/code
       - static_files:/static
       - media_files:/media
+      - docs:/docs
       # Uncomment this to use SQLite
       #- ./db:/db
     restart: "unless-stopped"
@@ -43,3 +44,4 @@ volumes:
   db_data:
   static_files:
   media_files:
+  docs:

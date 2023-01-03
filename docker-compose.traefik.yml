@@ -30,6 +30,7 @@ services:
     volumes:
       - static_files:/static
       - media_files:/media
+      - docs:/docs
       # Uncomment this to use SQLite
       #- db_data:/db
     restart: "unless-stopped"
@@ -51,6 +52,7 @@ services:
     volumes:
       - static_files:/static
       - media_files:/media
+      - docs:/docs
     networks:
       - backend
       - proxy
@@ -67,6 +69,7 @@ volumes:
   db_data:
   static_files:
   media_files:
+  docs:
 
 networks:
   backend:

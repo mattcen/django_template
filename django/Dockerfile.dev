@@ -1,3 +1,10 @@
+FROM peaceiris/mdbook AS docs
+
+WORKDIR /book
+COPY docs src
+RUN mdbook build
+
+
 FROM python:3
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -20,7 +27,12 @@ RUN apt-get update && \
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+VOLUME /static
+VOLUME /media
+VOLUME /docs
 COPY . .
+COPY --from=docs /book/book /built_docs
+
 EXPOSE 8000
 
 HEALTHCHECK --interval=10s --timeout=5s --retries=5 CMD bash -c '[[ "$(curl -L -o /dev/null -s -w "%{http_code}\n" http://localhost:8000/)" == "200" ]]'
