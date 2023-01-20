@@ -23,7 +23,7 @@ services:
       context: ./django
       # To build image with extra dev tools
       #dockerfile: Dockerfile.dev
-    command: gunicorn myproject.wsgi -b 0.0.0.0:8000
+    command: python -m gunicorn myproject.wsgi -b 0.0.0.0:8000
     env_file: .env
     volumes:
       - static_files:/static
