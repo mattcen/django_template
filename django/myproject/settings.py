@@ -23,7 +23,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # reading .env file
-environ.Env.read_env(BASE_DIR.parent / '.env')
+environ.Env.read_env(str(BASE_DIR.parent / '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -148,9 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR.parent / 'static'
+STATIC_ROOT = str(BASE_DIR.parent / 'static')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.parent / 'media'
+MEDIA_ROOT = str(BASE_DIR.parent / 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-auto-field
