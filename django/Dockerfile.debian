@@ -1,0 +1,42 @@
+FROM peaceiris/mdbook AS docs
+
+WORKDIR /book
+COPY docs src
+RUN mdbook build
+
+
+FROM debian:bullseye
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+WORKDIR /code
+
+RUN echo deb http://deb.debian.org/debian bullseye-backports main >> /etc/apt/sources.list
+
+RUN apt-get update && \
+    apt-get install -y \
+      python3-django/bullseye-backports \
+      python3-django-environ \
+      python3-djangorestframework \
+      python3-gunicorn \
+      python3-psycopg2 \
+      # Database client for using './manage.py dbshell' etc
+      #sqlite3 \
+      #spatialite-bin \
+      #postgresql-client \
+    && \
+    apt-get -y autoremove && \
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/*
+# FIXME: Find django-bootstrap
+
+VOLUME /static
+VOLUME /media
+VOLUME /docs
+COPY . .
+COPY --from=docs /book/book /built_docs
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 CMD bash -c '[[ "$(curl -L -o /dev/null -s -w "%{http_code}\n" http://localhost:8000/)" == "200" ]]'
+
+ENTRYPOINT ["/code/docker-entrypoint.sh"]
