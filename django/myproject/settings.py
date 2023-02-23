@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # Include this to build on top of Boostrap 5
     'django_bootstrap5',
+    # Include this to add history to models
+    'simple_history',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Include this to add history to models
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
