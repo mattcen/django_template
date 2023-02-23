@@ -17,6 +17,7 @@ RUN apt-get update && \
       python-is-python3 \
       python3-django/bullseye-backports \
       python3-django-environ \
+      python3-django-simple-history \
       python3-djangorestframework \
       python3-gunicorn \
       python3-psycopg2 \
