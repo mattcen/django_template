@@ -1,4 +1,4 @@
-FROM peaceiris/mdbook AS docs
+FROM --platform=$BUILDPLATFORM peaceiris/mdbook AS docs
 
 WORKDIR /book
 COPY docs src
