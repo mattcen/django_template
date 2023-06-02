@@ -1,21 +1,21 @@
 version: "3.8"
 
 services:
-  # To use an external database server, comment out this service
-  db:
-    # Use regular Postgres by default
-    image: postgres
-    # Use PostGIS for spatial apps
-    #image: postgis/postgis
-    env_file: .env
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: "unless-stopped"
+  # To use an built-in Postgres server, uncomment this service
+  #db:
+  #  # Use regular Postgres by default
+  #  image: postgres
+  #  # Use PostGIS for spatial apps
+  #  #image: postgis/postgis
+  #  env_file: .env
+  #  volumes:
+  #    - db_data:/var/lib/postgresql/data
+  #  healthcheck:
+  #    test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+  #    interval: 10s
+  #    timeout: 5s
+  #    retries: 5
+  #  restart: "unless-stopped"
 
   app:
     image: localhost/your_app_image_here
@@ -30,13 +30,13 @@ services:
       - static_files:/static
       - media_files:/media
       - docs:/docs
-      # Uncomment this to use SQLite
-      #- ./db:/db
+      # Comment this out if you're not using SQLite
+      - ./db:/db
     restart: "unless-stopped"
-    # To use an external database server, comment out this dependency
-    depends_on:
-      db:
-        condition: service_healthy
+    # To use an built-in Postgres server, uncomment this dependency
+    #depends_on:
+    #  db:
+    #    condition: service_healthy
     ports:
       - "$APP_PORT:8000"
 
