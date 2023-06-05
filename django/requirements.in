@@ -1,0 +1,7 @@
+Django
+django-environ
+djangorestframework
+django-simple-history
+psycopg2-binary
+django-bootstrap5
+gunicorn
