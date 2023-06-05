@@ -5,7 +5,9 @@
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+
+  # Maintain dependencies for Django app
+  - package-ecosystem: "pip-compile"
+    directory: "django/"
     schedule:
       interval: "weekly"
