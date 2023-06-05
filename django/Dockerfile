@@ -1,11 +1,11 @@
-FROM --platform=$BUILDPLATFORM peaceiris/mdbook AS docs
+FROM --platform=$BUILDPLATFORM peaceiris/mdbook:v0.4.30 AS docs
 
 WORKDIR /book
 COPY docs src
 RUN mdbook build
 
 
-FROM python:3
+FROM python:3.11.3-bullseye
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /code
