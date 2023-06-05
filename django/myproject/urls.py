@@ -16,7 +16,7 @@ Including another URLconf
 
 # Use this for regular Django projects
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
+from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from django.conf import settings
