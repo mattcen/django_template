@@ -4,9 +4,9 @@ services:
   # To use an built-in Postgres server, uncomment this service
   #db:
   #  # Use regular Postgres by default
-  #  image: postgres
+  #  image: postgres:15.3-bullseye
   #  # Use PostGIS for spatial apps
-  #  #image: postgis/postgis
+  #  #image: postgis/postgis:15-3.3
   #  env_file: .env
   #  volumes:
   #    - db_data:/var/lib/postgresql/data

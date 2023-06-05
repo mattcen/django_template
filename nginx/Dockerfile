@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.25.0-bullseye
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY docker-entrypoint-99-set-app-host.sh /docker-entrypoint.d/99-set-app-host.sh
