@@ -58,7 +58,7 @@ cp .env.example .env
 
 ## Creating your first app
 
-Now you've got Django up and running, you should be at the point where you can follow the [Django documentation](https://docs.djangoproject.com/en/dev/intro/tutorial01/#creating-the-polls-app) to create your first app. The short version of what you need to do from here is:
+Now you've got Django up and running, you should be at the point where you can follow the [Django documentation](https://docs.djangoproject.com/en/dev/intro/tutorial01/#creating-the-polls-app) or [Wagtail documentation](https://docs.wagtail.org/en/stable/getting_started/integrating_into_django.html#start-developing) to create your first app. The short version of what you need to do from here is:
 
 1. Create an app:
 
