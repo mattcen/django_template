@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     # Include this to add history to models
     'simple_history',
+    # Uncomment the below line and replace 'myapp' with the name of your app
+    #'myapp',
 ]
 
 MIDDLEWARE = [
