@@ -1,8 +1,10 @@
 pipeline:
   publish-container-image:
     image: woodpeckerci/plugin-docker-buildx
-    secrets: [docker_username, docker_password]
     settings:
+      username: ${CI_REPO_OWNER}
+      password:
+        from_secret: DOCKER_PASSWORD
       # Replace this with your own Git host
       repo: git.mattcen.com/${DRONE_REPO}
       context: django/
