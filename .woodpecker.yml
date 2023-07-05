@@ -1,0 +1,17 @@
+pipeline:
+  publish-container-image:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      username: ${CI_REPO_OWNER}
+      password:
+        from_secret: DOCKER_PASSWORD
+      # Replace this with your own Git host
+      repo: git.mattcen.com/${DRONE_REPO}
+      context: django/
+      dockerfile: django/Dockerfile
+      platforms: linux/amd64,linux/arm64/v8
+      # Replace this with your own Git host
+      cache_from: git.mattcen.com/${DRONE_REPO}
+    when:
+      branch: ${CI_REPO_DEFAULT_BRANCH}
+      event: push
