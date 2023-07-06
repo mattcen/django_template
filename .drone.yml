@@ -1,0 +1,23 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: Publish Container Image
+  image: plugins/docker
+  settings:
+    # Replace this with your own Git host
+    registry: git.mattcen.com
+    username: $DRONE_REPO_OWNER
+    password:
+      from_secret: DOCKER_PASSWORD
+    # Replace this with your own Git host
+    repo: git.mattcen.com/${DRONE_REPO}
+    context: django/
+    dockerfile: django/Dockerfile
+    # Replace this with your own Git host
+    cache_from: git.mattcen.com/${DRONE_REPO}
+
+trigger:
+  branch:
+    - main
