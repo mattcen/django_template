@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     # Include this to add history to models
     'simple_history',
+    # Include extras to make working with Django's CLI etc easier
+    'django_extensions',
     # Uncomment the below line and replace 'myapp' with the name of your app
     #'myapp',
 ]
