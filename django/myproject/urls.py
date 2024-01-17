@@ -16,40 +16,41 @@ Including another URLconf
 # Use this for regular Django projects
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+
 # Use this for geospatial projects
-#from django.contrib.gis import admin
+# from django.contrib.gis import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path(
-        'admin/password_reset/',
+        "admin/password_reset/",
         auth_views.PasswordResetView.as_view(),
-        name='admin_password_reset',
+        name="admin_password_reset",
     ),
     path(
-        'admin/password_reset/done/',
+        "admin/password_reset/done/",
         auth_views.PasswordResetDoneView.as_view(),
-        name='password_reset_done',
+        name="password_reset_done",
     ),
     path(
-        'reset/<uidb64>/<token>/',
+        "reset/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(),
-        name='password_reset_confirm',
+        name="password_reset_confirm",
     ),
     path(
-        'reset/done/',
+        "reset/done/",
         auth_views.PasswordResetCompleteView.as_view(),
-        name='password_reset_complete',
+        name="password_reset_complete",
     ),
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Add this to set up authentication for REST framework
-    #path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
     # To set up your first app to manage the homepage of this site,
     # uncomment the below line, and replace 'myapp' with the name of your app.
-    #path('', include('myapp.urls')),
+    # path('', include('myapp.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static('docs/', document_root='/docs', show_indexes=True)
+urlpatterns += static("docs/", document_root="/docs", show_indexes=True)
