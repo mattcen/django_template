@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 from pathlib import Path
 
 import environ
+import email.utils
 
 env = environ.Env(
     # set casting, default value
@@ -182,3 +183,6 @@ EMAIL_TIMEOUT = env("EMAIL_TIMEOUT", default=None)
 EMAIL_SSL_KEYFILE = env("EMAIL_SSL_KEYFILE", default=None)
 EMAIL_SSL_CERTFILE = env("EMAIL_SSL_CERTFILE", default=None)
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
+SERVER_EMAIL = env("SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+
+ADMINS = email.utils.getaddresses(["To: %s" % (env("ADMINS", default=""))])
