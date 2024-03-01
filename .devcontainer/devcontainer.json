@@ -32,7 +32,7 @@
     },
     //"ghcr.io/devcontainers-contrib/features/neovim-apt-get:1": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {
-    	"version": "latest"
+      "version": "latest"
     },
     "ghcr.io/devcontainers-contrib/features/ruff:1": {
       "version": "latest"
