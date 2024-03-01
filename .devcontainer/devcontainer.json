@@ -31,9 +31,9 @@
       "version": "latest"
     },
     //"ghcr.io/devcontainers-contrib/features/neovim-apt-get:1": {},
-    //"ghcr.io/devcontainers-contrib/features/pre-commit:2": {
-    //	"version": "latest"
-    //},
+    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {
+    	"version": "latest"
+    },
     "ghcr.io/devcontainers-contrib/features/ruff:1": {
       "version": "latest"
     },
@@ -98,6 +98,7 @@
         "elagil.pre-commit-helper",
         "alexcvzz.vscode-sqlite",
         "eamodio.gitlens",
+        "Tailscale.vscode-tailscale",
         "tamasfe.even-better-toml"
       ]
     }
