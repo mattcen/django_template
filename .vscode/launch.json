@@ -13,7 +13,8 @@
 				"runserver"
 			],
 			"django": true,
-			"autoStartBrowser": false
+			"autoStartBrowser": false,
+            "justMyCode": true
 		}
 	]
 }
