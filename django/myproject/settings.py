@@ -184,5 +184,6 @@ EMAIL_SSL_KEYFILE = env("EMAIL_SSL_KEYFILE", default=None)
 EMAIL_SSL_CERTFILE = env("EMAIL_SSL_CERTFILE", default=None)
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
 SERVER_EMAIL = env("SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+EMAIL_FILE_PATH = env("EMAIL_FILE_PATH", default="/tmp/django-messages")
 
 ADMINS = email.utils.getaddresses(["To: %s" % (env("ADMINS", default=""))])
