@@ -6,4 +6,6 @@ psycopg2-binary
 django-bootstrap5
 gunicorn
 django-extensions
+whitenoise
 ipython
+django-debug-toolbar

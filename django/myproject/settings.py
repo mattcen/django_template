@@ -68,6 +68,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -98,6 +99,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "myproject.wsgi.application"
 
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+    },
+    "loggers": {
+        "root": {"handlers": ["console"], "level": "INFO"},
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
