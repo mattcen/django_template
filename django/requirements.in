@@ -7,3 +7,5 @@ django-bootstrap5
 gunicorn
 django-extensions
 ipython
+setuptools # required by django-simple-history
+django-debug-toolbar

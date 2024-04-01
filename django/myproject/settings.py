@@ -42,6 +42,9 @@ DEBUG = env("DEBUG")
 ALLOWED_HOSTS = ["localhost"] + env("ALLOWED_HOSTS").split(",")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(",")
 
+INTERNAL_IPS = [
+    # "127.0.0.1",
+]
 
 # Application definition
 
@@ -62,11 +65,14 @@ INSTALLED_APPS = [
     "simple_history",
     # Include extras to make working with Django's CLI etc easier
     "django_extensions",
+    # Helps with debugging. Only enabled if client is listed in INTERNAL_IPS
+    "debug_toolbar",
     # Uncomment the below line and replace 'myapp' with the name of your app
     #'myapp',
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
