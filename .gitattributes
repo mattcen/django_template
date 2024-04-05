@@ -1,7 +1,7 @@
 *.sh text eol=lf
 django/requirements.txt -diff -merge
-django/requirements.txt linguist-generate=true
+django/requirements.txt linguist-generated=true
 django/requirements.lock -diff -merge
-django/requirements.lock linguist-generate=true
+django/requirements.lock linguist-generated=true
 django/*/migrations/[0-9][0-9][0-9][0-9]_*.py -diff -merge
-django/*/migrations/[0-9][0-9][0-9][0-9]_*.py linguist-generate=true
+django/*/migrations/[0-9][0-9][0-9][0-9]_*.py linguist-generated=true
