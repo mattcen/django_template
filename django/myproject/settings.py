@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+import email.utils
 from pathlib import Path
 
 import environ
-import email.utils
+
+import django
 
 env = environ.Env(
     # set casting, default value
@@ -129,6 +131,24 @@ DATABASES = {
     }
 }
 
+# https://gcollazo.com/optimal-sqlite-settings-for-django/
+# We don't do this in the assignment above in case we've overridden the ENGINE to not be SQLite3
+if DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3" and django.VERSION[
+    0:2
+] >= (5, 1):
+    DATABASES["default"]["OPTIONS"] = {
+        "init_command": (
+            "PRAGMA foreign_keys=ON;"
+            "PRAGMA journal_mode = WAL;"
+            "PRAGMA synchronous = NORMAL;"
+            "PRAGMA busy_timeout = 5000;"
+            "PRAGMA temp_store = MEMORY;"
+            "PRAGMA mmap_size = 134217728;"
+            "PRAGMA journal_size_limit = 67108864;"
+            "PRAGMA cache_size = 2000;"
+        ),
+        "transaction_mode": "IMMEDIATE",
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
