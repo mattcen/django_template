@@ -1,4 +1,8 @@
 *.sh text eol=lf
+requirements-dev.lock -diff -merge
+requirements-dev.lock linguist-generated=true
+requirements.lock -diff -merge
+requirements.lock linguist-generated=true
 django/requirements.txt -diff -merge
 django/requirements.txt linguist-generated=true
 django/requirements.lock -diff -merge
