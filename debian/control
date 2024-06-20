@@ -1,0 +1,40 @@
+Source: django-template
+Section: unknown
+Priority: optional
+Maintainer: root <root@unknown>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-python3,
+ python3-setuptools,
+ python3-all,
+ pybuild-plugin-pyproject,
+ python3-hatchling,
+#Testsuite: autopkgtest-pkg-python
+Standards-Version: 4.6.2
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/django-template
+#Vcs-Git: https://salsa.debian.org/debian/django-template.git
+
+Package: python3-django-template
+Architecture: all
+Depends:
+ ${python3:Depends},
+ ${misc:Depends},
+Suggests:
+ python-django-template-doc,
+Description: <insert up to 60 chars description> (Python 3)
+ <Insert long description, indented with spaces.>
+ .
+ This package installs the library for Python 3.
+
+Package: python-django-template-doc
+Section: doc
+Architecture: all
+Depends:
+ ${sphinxdoc:Depends},
+ ${misc:Depends},
+Description: <insert up to 60 chars description> (common documentation)
+ <Insert long description, indented with spaces.>
+ .
+ This is the common documentation package.
