@@ -27,7 +27,7 @@ django-extensions==3.2.3
     # via -r requirements.in
 django-simple-history==3.3.0
     # via -r requirements.in
-djangorestframework==3.14.0
+djangorestframework==3.15.2
     # via -r requirements.in
 executing==2.0.1
     # via stack-data
@@ -55,8 +55,6 @@ pure-eval==0.2.2
     # via stack-data
 pygments==2.16.1
     # via ipython
-pytz==2023.3
-    # via djangorestframework
 six==1.16.0
     # via asttokens
 sqlparse==0.5.0
