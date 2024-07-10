@@ -10,7 +10,7 @@ asttokens==2.4.1
     # via stack-data
 decorator==5.1.1
     # via ipython
-django==4.2.11
+django==4.2.14
     # via
     #   -r requirements.in
     #   django-bootstrap5
