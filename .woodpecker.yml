@@ -1,23 +1,25 @@
-kind: pipeline
-type: docker
-name: default
+when:
+  - branch: main
+    event:
+      - push
+      - manual
+      - cron
 
 steps:
 - name: Publish Container Image
-  image: plugins/docker
+  image: woodpeckerci/plugin-docker-buildx
   settings:
+    platforms: linux/amd64,linux/arm/v6,linux/arm64/v8
+    # Replace this with your own Git host
+    repo: git.mattcen.com/${CI_REPO}
     # Replace this with your own Git host
     registry: git.mattcen.com
-    username: $DRONE_REPO_OWNER
+    tags: latest
+    username: ${CI_REPO_OWNER}
     password:
       from_secret: DOCKER_PASSWORD
-    # Replace this with your own Git host
-    repo: git.mattcen.com/${DRONE_REPO}
     context: django/
     dockerfile: django/Dockerfile
     # Replace this with your own Git host
-    cache_from: git.mattcen.com/${DRONE_REPO}
-
-trigger:
-  branch:
-    - main
+    cache_from: type=registry,ref=git.mattcen.com/${CI_REPO}:main
+    cache_to: type=registry,ref=git.mattcen.com/${CI_REPO}:main
