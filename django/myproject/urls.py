@@ -15,14 +15,14 @@ Including another URLconf
 """
 
 # Use this for regular Django projects
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 # Use this for geospatial projects
 # from django.contrib.gis import admin
 from django.urls import include, path  # noqa: F401
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path(

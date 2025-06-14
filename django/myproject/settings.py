@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
+import email.utils
 from pathlib import Path
 
 import environ
-import email.utils
 
 env = environ.Env(
     # set casting, default value
@@ -90,8 +90,8 @@ MIDDLEWARE = [
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        },
-    }
+    },
+}
 
 ROOT_URLCONF = "myproject.urls"
 
