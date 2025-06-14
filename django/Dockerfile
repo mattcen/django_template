@@ -30,7 +30,7 @@ RUN pip install -r requirements.txt
 VOLUME /media
 COPY . .
 COPY --from=docs /book/book /docs
-RUN python manage.py collectstatic --no-input --clear
+RUN sh -c 'eval "$(cat .env.build)"; python manage.py collectstatic --no-input --clear'
 
 EXPOSE 8000
 
