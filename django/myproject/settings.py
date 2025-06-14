@@ -49,6 +49,7 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -74,6 +75,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    # To aid serving static files from Django
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -83,6 +86,12 @@ MIDDLEWARE = [
     # Include this to add history to models
     "simple_history.middleware.HistoryRequestMiddleware",
 ]
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 ROOT_URLCONF = "myproject.urls"
 
@@ -193,3 +202,5 @@ SERVER_EMAIL = env("SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 EMAIL_FILE_PATH = env("EMAIL_FILE_PATH", default="/tmp/django-messages")
 
 ADMINS = email.utils.getaddresses(["To: %s" % (env("ADMINS", default=""))])
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True

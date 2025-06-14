@@ -9,3 +9,4 @@ django-extensions
 ipython
 setuptools # required by django-simple-history
 django-debug-toolbar
+whitenoise
