@@ -27,11 +27,10 @@ RUN apt-get update && \
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-VOLUME /static
 VOLUME /media
-VOLUME /docs
 COPY . .
-COPY --from=docs /book/book /built_docs
+COPY --from=docs /book/book /docs
+RUN python manage.py collectstatic --no-input --clear
 
 EXPOSE 8000
 
