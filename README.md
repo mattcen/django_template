@@ -19,7 +19,7 @@ cp .env.example .env
   * To do so using Docker:
 
     ```sh
-    docker-compose up -f docker-compose.dev.yml -d
+    docker compose -f docker-compose.dev.yml up -d
     ```
 
   * To do so using a Python `venv`:
@@ -65,7 +65,7 @@ Now you've got Django up and running, you should be at the point where you can f
   If using Docker:
 
   ```sh
-  docker-compose exec app ./manage.py startapp myapp
+  docker compose -f docker-compose.dev.yml exec app ./manage.py startapp myapp
   ```
   If using a virtual environment:
 
@@ -80,7 +80,7 @@ Now you've got Django up and running, you should be at the point where you can f
 
 ## Notes
 
-By default there is no `docker-compose.yml`, so `docker-compose up` won't work without specifying one of the other files.
+By default there is no `docker-compose.yml`, so `docker compose up` won't work without specifying one of the other files.
 
 `docker-compose.dev.yml` is designed for use during development. You probably also want to uncomment the `DEBUG` line in the `.env` file in this case.
 
@@ -88,4 +88,4 @@ By default there is no `docker-compose.yml`, so `docker-compose up` won't work w
 
 `docker-compose.traefik.yml` is designed for production when using Traefik as a HTTP proxy
 
-For convenience, any of these files could be copied or symlinked to `docker-compose.yml` so you don't need to specify the file with `docker-compose -f file.yml`.
+For convenience, any of these files could be copied or symlinked to `docker-compose.yml` so you don't need to specify the file with `docker compose -f file.yml`.
