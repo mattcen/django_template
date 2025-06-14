@@ -5,7 +5,7 @@ COPY docs src
 RUN mdbook build
 
 
-FROM python:3.11.3-bullseye
+FROM python:3.11.13-bookworm
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /code
