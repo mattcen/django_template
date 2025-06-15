@@ -26,9 +26,7 @@ services:
     command: python -m gunicorn myproject.wsgi -b 0.0.0.0:8000
     env_file: .env
     volumes:
-      - static_files:/static
       - media_files:/media
-      - docs:/docs
       # Comment this out if you're not using SQLite
       - ./db:/db
     restart: "unless-stopped"
@@ -48,9 +46,7 @@ services:
     depends_on:
       - app
     volumes:
-      - static_files:/static
       - media_files:/media
-      - docs:/docs
     networks:
       - backend
       - proxy
@@ -65,9 +61,7 @@ services:
 
 volumes:
   db_data:
-  static_files:
   media_files:
-  docs:
 
 networks:
   backend:

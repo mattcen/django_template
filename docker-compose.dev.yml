@@ -25,9 +25,7 @@ services:
     env_file: .env
     volumes:
       - ./django:/code
-      - static_files:/static
       - media_files:/media
-      - docs:/docs
       # Comment this out if you're not using SQLite
       - ./db:/db
     restart: "unless-stopped"
@@ -40,6 +38,4 @@ services:
 
 volumes:
   db_data:
-  static_files:
   media_files:
-  docs:
