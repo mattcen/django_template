@@ -10,6 +10,9 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 WORKDIR /code
 
+RUN useradd django
+RUN chown django:django /code
+
 RUN apt-get update && \
     apt-get install -y \
       binutils \
@@ -25,12 +28,17 @@ RUN apt-get update && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
 VOLUME /media
-COPY . .
+COPY --chown=django:django . .
+
+RUN mkdir /static
+RUN chown django:django /static /media
+USER django
+
 RUN sh -c 'eval "$(cat .env.build)"; python manage.py collectstatic --no-input --clear'
-COPY --from=docs /book/book /static/docs
+COPY --chown=django:django --from=docs /book/book /static/docs
 
 EXPOSE 8000
 
