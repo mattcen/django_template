@@ -207,3 +207,4 @@ EMAIL_FILE_PATH = env("EMAIL_FILE_PATH", default="/tmp/django-messages")
 ADMINS = email.utils.getaddresses(["To: %s" % (env("ADMINS", default=""))])
 
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+WHITENOISE_INDEX_FILE = True
