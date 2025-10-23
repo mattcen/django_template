@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "monosans.djlint",
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "batisteo.vscode-django"
+    ]
+}

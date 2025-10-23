@@ -1,0 +1,37 @@
+{
+    "files.associations": {
+        "*.html": "django-html"
+    },
+    "cSpell.words": [
+        "activitysite",
+        "authd",
+        "blogpage",
+        "Callsign",
+        "capfirst",
+        "CMYK",
+        "djlint",
+        "endcomment",
+        "endfor",
+        "endwith",
+        "HTMX",
+        "jotajoti",
+        "JOTI",
+        "labelledby",
+        "linebreaksbr",
+        "maxlength",
+        "novalidate",
+        "nowrap",
+        "pageurl",
+        "stringformat",
+        "stylesheet",
+        "wagtailcore",
+        "WOSM",
+        "wosmlogo"
+    ],
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "[django-html]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    }
+}
