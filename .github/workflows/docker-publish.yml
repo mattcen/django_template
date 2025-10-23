@@ -1,11 +1,16 @@
 name: Container Image
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ main ]
     tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 env:
   IMAGE_NAME: ${{ github.repository }}
