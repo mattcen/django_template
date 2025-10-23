@@ -54,7 +54,10 @@ build:
 check: # Check ruff linting and formatting
 	uv run ruff check
 	uv run ruff format --check
+	uv run djlint --reformat .
 
 lint: ## Fix ruff linting and formatting
 	uv run ruff check --fix
 	uv run ruff format
+	uv run djlint --lint .
+	uv run djlint --reformat --check .
