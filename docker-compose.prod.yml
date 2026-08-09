@@ -34,17 +34,41 @@ services:
     #    condition: service_healthy
 
   web:
-    image: mattcen/nginx_django
-    build: ./nginx
-    environment:
-      # Replace 'app' below with the name of the django service above
-      WEB_APP_HOST: app:8000
+    image: ghcr.io/nginx/nginx-unprivileged:alpine
+    configs:
+      - source: nginx_conf
+        target: /etc/nginx/conf.d/default.conf
     ports:
       - "$APP_PORT:80"
     depends_on:
       - app
     volumes:
       - media_files:/media
+    healthcheck:
+      test: '[ "$(curl -L -o /dev/null -s -w "%{http_code}\n" http://localhost/.nginx_healthcheck)" = 200 ]'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+configs:
+  nginx_conf:
+    #file: ./nginx.conf
+    content: |
+      upstream webapp { server ${WEB_APP_HOST}; }
+      server {
+          listen 80;
+          location / {
+              proxy_pass http://webapp;
+              proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+              proxy_set_header Host $$host;
+              proxy_redirect off;
+          }
+          location /media/ { alias /media/; }
+          location /.nginx_healthcheck {
+            return 200 'running';
+            default_type application/text;
+          }
+      }
 
 volumes:
   db_data:
