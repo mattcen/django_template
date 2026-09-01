@@ -7,7 +7,7 @@ django-debug-toolbar==6.0.0
 django-environ==0.12.0
 django-extensions==4.1
 django-simple-history==3.10.1
-djangorestframework==3.16.1
+djangorestframework==3.17.2
 executing==2.2.1
 gunicorn==23.0.0
 ipython==9.6.0
